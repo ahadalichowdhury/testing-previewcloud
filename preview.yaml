@@ -1,13 +1,13 @@
 services:
   api:
-    dockerfile: backend/Dockerfile
+    dockerfile: ./backend/Dockerfile
     port: 5000
     env:
       - DATABASE_URL=${DATABASE_URL}
       - API_KEY=${API_KEY}
 
   frontend:
-    dockerfile: frontend/Dockerfile
+    dockerfile: ./frontend/Dockerfile
     port: 3000
     env:
       - API_URL=https://pr-${PR_NUMBER}-api.previewcloud.cloud
