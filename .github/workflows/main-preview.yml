@@ -14,7 +14,7 @@ jobs:
 
       - name: Create Preview for Main Branch
         id: preview
-        uses: ahadalichowdhury/previewcloud-action@v1.0.0
+        uses: ahadalichowdhury/previewcloud-action@v1.0.1
         with:
           api_key: ${{ secrets.PREVIEWCLOUD_API_KEY }}
           pr_number: 0 # Use 0 for main branch (no PR number)
