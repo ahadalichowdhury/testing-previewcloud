@@ -1,0 +1,28 @@
+name: Create Preview on Main Push
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create Preview for Main Branch
+        id: preview
+        uses: ahadalichowdhury/previewcloud-action@v1.0.0
+        with:
+          api_key: ${{ secrets.PREVIEWCLOUD_API_KEY }}
+          pr_number: 0 # Use 0 for main branch (no PR number)
+          branch: ${{ github.ref_name }}
+          commit_sha: ${{ github.sha }}
+          repository: ${{ github.repository }}
+
+      - name: Output Preview URL
+        run: |
+          echo "🚀 Preview deployed: ${{ steps.preview.outputs.preview_url }}"
+
