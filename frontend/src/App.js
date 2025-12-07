@@ -7,7 +7,7 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Use API_URL from environment or default to localhost for development
+    // Use API_URL from environment or default
     const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
     
     fetch(`${apiUrl}/hello`)
