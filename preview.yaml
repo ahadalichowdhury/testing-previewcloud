@@ -10,7 +10,7 @@ services:
     dockerfile: ./frontend/Dockerfile
     port: 80 # Changed from 3000 to 80 (nginx listens on port 80)
     env:
-      - API_URL=${API_URL} 
+      - API_URL=${API_URL}
 
 database:
   type: postgres
