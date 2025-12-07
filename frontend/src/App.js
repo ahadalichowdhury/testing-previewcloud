@@ -7,7 +7,7 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+    const apiUrl = (window.APP_CONFIG && window.APP_CONFIG.API_URL) || 'http://localhost:5000';
     
     fetch(`${apiUrl}/hello`)
       .then(response => response.json())
