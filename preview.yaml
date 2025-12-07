@@ -8,9 +8,9 @@ services:
 
   frontend:
     dockerfile: ./frontend/Dockerfile
-    port: 3000
+    port: 80 # Changed from 3000 to 80 (nginx listens on port 80)
     env:
-      - API_URL=https://pr-${PR_NUMBER}-api.previewcloud.cloud
+      - API_URL=https://pr-${PR_NUMBER}-ahadalichowdhury-api.previewcloud.cloud
 
 database:
   type: postgres
