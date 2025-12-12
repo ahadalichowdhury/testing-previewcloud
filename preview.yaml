@@ -1,16 +1,16 @@
 services:
+  frontend:
+    dockerfile: ./frontend/Dockerfile
+    port: 80
+    root: true  # ← Add this! Makes frontend use: pr-{pr_number}-{owner}.previewcloud.com
+
   api:
     dockerfile: ./backend/Dockerfile
     port: 5000
+    path: /api  # ← Add this! Makes backend use: pr-{pr_number}-{owner}.previewcloud.com/api
     env:
       - DATABASE_URL=${DATABASE_URL}
       - API_KEY=${API_KEY}
-
-  frontend:
-    dockerfile: ./frontend/Dockerfile
-    port: 80 # Changed from 3000 to 80 (nginx listens on port 80)
-    env:
-      - API_URL=${API_URL}
 
 database:
   type: postgres
