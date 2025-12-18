@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Deploy to PreviewCloud
-        uses: ahadalichowdhury/previewcloud-action@v1.0.5
+        uses: ahadalichowdhury/previewcloud-action@v1.0.6
         with:
           api-token: ${{ secrets.PREVIEWCLOUD_TOKEN }}
           api-url: https://api.previewcloud.cloud
