@@ -1,19 +1,21 @@
 services:
   frontend:
     dockerfile: ./frontend/Dockerfile
-    env:
-      - REACT_APP_API_URL: ${API_URL} # Auto-injected by PreviewCloud
-      - NODE_ENV: production
+    context: ./frontend # Build context (like DigitalOcean tutorial)
     port: 80
-    root: true  # ← Add this! Makes frontend use: pr-{pr_number}-{owner}.previewcloud.com
+    env:
+      REACT_APP_API_URL: ${API_URL} # Resolved by PreviewCloud
+      NODE_ENV: production
+    root: true
 
   api:
     dockerfile: ./backend/Dockerfile
+    context: ./backend # Separate build context
     port: 5000
-    path: /api  # ← Add this! Makes backend use: pr-{pr_number}-{owner}.previewcloud.com/api
+    path: /api
     env:
-      - DATABASE_URL=${DATABASE_URL}
-      - API_KEY=${API_KEY}
+      DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: production
 
 database:
   type: postgres
