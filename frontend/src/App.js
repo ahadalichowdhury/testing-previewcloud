@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 
-//testing
 function App() {
   const [backendMessage, setBackendMessage] = useState('')
   const [loading, setLoading] = useState(true)
