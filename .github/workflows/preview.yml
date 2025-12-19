@@ -2,34 +2,38 @@ name: Preview Environment
 
 on:
   push:
-    branches: [main, staging] # Deploy on push to these branches
+    branches: [main, staging]
   pull_request:
-    branches: ["*"] # Deploy on PR to any branch
+    branches: ["*"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # Build your application before Docker build
+
+      # ⬇️ ADD THESE STEPS BEFORE PreviewCloud Action
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
-      - name: Install and build
+      - name: Install dependencies
         run: |
           cd frontend
           npm install
+
+      - name: Build frontend
+        run: |
+          cd frontend
           npm run build
         # This creates the 'build' directory that Dockerfile needs
 
       - name: Deploy to PreviewCloud
-        uses: ahadalichowdhury/previewcloud-action@v1.0.14
+        uses: ahadalichowdhury/previewcloud-action@v1.0.15
         with:
           api-token: ${{ secrets.PREVIEWCLOUD_TOKEN }}
           api-url: https://api.previewcloud.cloud
-          # Registry configuration (REQUIRED)
           registry: docker.io
           registry-username: ${{ secrets.DOCKER_USERNAME }}
           registry-password: ${{ secrets.DOCKER_PASSWORD }}
