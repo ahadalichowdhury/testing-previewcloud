@@ -11,6 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      # Build your application before Docker build
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install and build
+        run: |
+          cd frontend
+          npm install
+          npm run build
+        # This creates the 'build' directory that Dockerfile needs
 
       - name: Deploy to PreviewCloud
         uses: ahadalichowdhury/previewcloud-action@v1.0.14
