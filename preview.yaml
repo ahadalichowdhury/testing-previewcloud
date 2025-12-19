@@ -2,7 +2,7 @@ services:
   frontend:
     dockerfile: ./frontend/Dockerfile
     env:
-      - API_URL: ${API_URL} # Auto-injected by PreviewCloud
+      - REACT_APP_API_URL: ${API_URL} # Auto-injected by PreviewCloud
       - NODE_ENV: production
     port: 80
     root: true  # ← Add this! Makes frontend use: pr-{pr_number}-{owner}.previewcloud.com
