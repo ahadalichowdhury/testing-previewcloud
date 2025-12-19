@@ -1,4 +1,5 @@
 name: Preview Environment
+
 on:
   push:
     branches: [main, staging] # Deploy on push to these branches
@@ -12,7 +13,11 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Deploy to PreviewCloud
-        uses: ahadalichowdhury/previewcloud-action@v1.0.13
+        uses: ahadalichowdhury/previewcloud-action@v1.0.14
         with:
           api-token: ${{ secrets.PREVIEWCLOUD_TOKEN }}
           api-url: https://api.previewcloud.cloud
+          # Registry configuration (REQUIRED)
+          registry: docker.io
+          registry-username: ${{ secrets.DOCKER_USERNAME }}
+          registry-password: ${{ secrets.DOCKER_PASSWORD }}
