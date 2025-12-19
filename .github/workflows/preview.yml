@@ -30,7 +30,7 @@ jobs:
         # This creates the 'build' directory that Dockerfile needs
 
       - name: Deploy to PreviewCloud
-        uses: ahadalichowdhury/previewcloud-action@v1.0.17
+        uses: ahadalichowdhury/previewcloud-action@v1.0.18
         with:
           api-token: ${{ secrets.PREVIEWCLOUD_TOKEN }}
           api-url: https://api.previewcloud.cloud
